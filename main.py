@@ -2,7 +2,7 @@ import yagmail
 import os
 
 sender = 'app7flask@gmail.com'
-reveiver = 'lzykszamb@supere.ml'
+receiver = 'lzykszamb@supere.ml'
 
 subject = """
 This is the subject
@@ -14,3 +14,5 @@ Hi!
 """
 
 yag = yagmail.SMTP(user=sender, password=os.getenv('PASSWORD'))
+yag.send(to=receiver, subject=subject, contents=contents)
+print("Email Sent!")
