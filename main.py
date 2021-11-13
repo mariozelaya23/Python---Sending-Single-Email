@@ -1,7 +1,7 @@
 import yagmail
 import os
-import time
-from datetime import datetime as dt
+import pandas
+
 
 sender = 'leadgeneratorsgurus@gmail.com'
 
@@ -13,11 +13,15 @@ subject = """
 This is the subject
 """
 
-contents = """
-Here is the content of the email!
-Hi!
-"""
+yag = yagmail.SMTP(user=sender, password=os.getenv('PASSWORD2'))
 
+df = pandas.read_csv('contacts.csv')
+#print(df)
+
+for index, row in df.iterrows():
+    contents = f"""Hi {row['name']} Here is the content of the email!"""
+    yag.send(to=row['email'], subject=subject, contents=contents)
+    print("Email Sent!")
 
 """
 while True:
