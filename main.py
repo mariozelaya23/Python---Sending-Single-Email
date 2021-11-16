@@ -2,13 +2,11 @@ import yagmail
 import os
 import pandas
 
-
 sender = 'leadgeneratorsgurus@gmail.com'
 
 yag = yagmail.SMTP(user=sender, password=os.getenv('PASSWORD2'))
 
 df = pandas.read_csv('contacts.csv')
-#print(df)
 
 for index, row in df.iterrows():
   receiver_email = row['email']
